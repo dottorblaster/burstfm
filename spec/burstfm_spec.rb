@@ -8,6 +8,19 @@ RSpec.describe Burstfm do
     expect(front_matter.length).to eq(7)
   end
 
+  it "checks that title option is correctly used" do
+    EXAMPLE_TITLE = "Example title"
+    options = {
+      :title => EXAMPLE_TITLE
+    }
+    front_matter = Burstfm.front_matter(options)
+    front_matter.each do |field|
+      if field[:label] == "title"
+        expect(field[:content]).to eq(EXAMPLE_TITLE)
+      end
+    end
+  end
+
   it "prints the front-matter" do
     Burstfm.print()
   end
